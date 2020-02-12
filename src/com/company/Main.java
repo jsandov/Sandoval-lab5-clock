@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         ClockDisplay clock = new ClockDisplay();
+        clock.turnAlarmOn(3,33);
 
         clock.setTime(22, 30);
         System.out.println(clock.getTime());

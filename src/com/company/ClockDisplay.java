@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.NumberDisplay;
 
 /**
  * The ClockDisplay class implements a digital clock display for a
@@ -12,17 +13,18 @@ package com.company;
  * fashion: the hour increments when the minutes roll over to zero.
  *
  * JS: Added feature to support 12 hour clock display in UpdateDisplay()
- * JS:
- * JS:
+ * JS: added turnAlarmOn method to set
+ * JS: Update Clock to start with alarm in the false position.
  *
  * @author Michael Kölling and David J. Barnes and Jesus Sandoval
- * @version 2016.02.29
+ * @version 2020.02.10
  */
 public class ClockDisplay
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;    // simulates the actual display
+    private boolean alarm;
 
     /**
      * Constructor for ClockDisplay objects. This constructor
@@ -33,6 +35,7 @@ public class ClockDisplay
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
         updateDisplay();
+        alarm = false;
     }
 
     /**
@@ -45,10 +48,8 @@ public class ClockDisplay
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
         setTime(hour, minute);
+        alarm = false;
 
-//        -------TO-DO-----------
-//        When clock is created alarm should be in the
-//        'OFF' position
 
     }
 
@@ -63,6 +64,11 @@ public class ClockDisplay
             hours.increment();
         }
         updateDisplay();
+
+        if (alarm)
+        {
+            System.out.println("***RING ***RING ***RING");
+        }
 
 //        When clock ticks to set alarm
 //        message should print a ring simulation
@@ -121,19 +127,24 @@ public class ClockDisplay
     }
 
     /**
-     * ---------TO-DO-------------
-     * Add method turnAlarmOn
-     * takes int hour and int minute
-     * Turns alarm on and sets it to the given time
+     * Turns alarm on
      */
+    public void turnAlarmOn(int hour, int minute)
+    {
+        ClockDisplay alarmClock = new ClockDisplay(hour, minute);
+        alarm = true;
+
+
+    }
 
 
     /**
-     * ---------TO-DO-------------
-     * Add method turnAlarmOff
-     * takes no parameters
-     * Turns alarm off and alarm should not ring
+     * Sets alarm to false
      */
+    public void turnAlarmOff()
+    {
+        alarm = false;
+    }
 
 
 }
